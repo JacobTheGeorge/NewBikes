@@ -30,14 +30,17 @@ public class Bike {
   public void chrome() {
 	  ChromeOptions options = new ChromeOptions();
 	  options.addArguments("--disable-notifications");
-	  
 	  options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
 	  WebDriver driver =new ChromeDriver(options);
-	 
-	  datafecth(driver);
-	
-	  
-			
+	  datafecth(driver);		
+  }
+  @Test
+  public void Edge() {
+	  EdgeOptions options = new EdgeOptions();
+	  options.addArguments("--disable-notifications");
+	  options.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+	  WebDriver driver =new EdgeDriver(options);
+	  datafecth(driver);		
   }
  public  static void datafecth(WebDriver driver) {
 	  

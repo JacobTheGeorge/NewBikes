@@ -48,24 +48,24 @@ public class Bike {
 			XSSFSheet sheet = wb.getSheetAt(0);
 			int rowCount = sheet.getLastRowNum()+1;
 			String bikeName="";
-			
+			String Location="";
+			String car="";
+			String email="";
 			for(int i=1; i<rowCount; i++) {
 				XSSFRow r=sheet.getRow(i);
-				int cellCount = r.getLastCellNum();
-				for(int j=0; j<cellCount; j++) 
-				{	
-				 bikeName=r.getCell(j).getStringCellValue();
-				}
-				run(driver,bikeName);
-				
-
+				bikeName=r.getCell(0).getStringCellValue();
+				Location=r.getCell(1).getStringCellValue();
+				car=r.getCell(2).getStringCellValue();
+				email=r.getCell(3).getStringCellValue();
+				run(driver,bikeName,Location,car,email);
 			}
+			driver.quit();
 			wb.close();
 	  }catch(Exception e) {
 		  System.out.println(e);
 	  }
   }
-  public static void run(WebDriver driver,String bikeName) throws InterruptedException, IOException {
+  public static void run(WebDriver driver,String bikeName,String Location,String car,String email) throws InterruptedException, IOException {
 	  driver.get("https://www.zigwheels.com");
 	  driver.manage().window().maximize();
 	  WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
@@ -124,17 +124,20 @@ public class Bike {
 			used_cars.click();
 			
 			WebElement city= driver.findElement(By.xpath("//input[@id='gs_input5']"));
-			city.sendKeys("Chennai");
-			driver.findElement(By.xpath("//a[@title='Chennai']")).click();
+			city.sendKeys(Location);
+			driver.findElement(By.xpath("//a[@title='"+Location+"']")).click();
 			WebElement scroll_frame= driver.findElement(By.xpath("//body/div[@class='zw-cmn-containerColor']/div[@class='container m-w-p0']/div[@class='row']/div[@class='col-lg-3 col-md-3 hidden-xs hidden-sm filterParent']/div[@class='zm-cmn-WhiteBG zw-cmn-shadowBorder']/div[@class='zw-sr-filterWrap']/ul[@class='zw-sr-sortLevelFst zm-cmn-colorBlack']/li[2]"));
 			new Actions(driver)
 				.scrollToElement(scroll_frame)
 				.perform();
 			
 			Thread.sleep(1000);
-			driver.findElement(By.xpath("//label[normalize-space()='Hyundai I10']")).click();
-			driver.findElement(By.xpath("//label[normalize-space()='Hyundai Santro Xing']")).click();
-			Thread.sleep(2000);
+			
+			 WebElement carName= wait.until(ExpectedConditions.elementToBeClickable(driver.findElement(By.xpath("//label[normalize-space()='"+car+"']"))));
+			carName.click();
+	
+			wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//h1[starts-with(text(),'Used "+car.split(" ")[0]+"')]"))));
+			wait.until(ExpectedConditions.visibilityOf(driver.findElement(By.xpath("//a[@data-track-label='Car-name']"))));
 			List<WebElement> li= driver.findElements(By.xpath("//a[@data-track-label='Car-name']"));
 			
 
@@ -169,7 +172,7 @@ public class Bike {
 				}
 			}
 			driver.switchTo().window(childWinHandle);
-			driver.findElement(By.id("identifierId")).sendKeys("jacrkiss");
+			driver.findElement(By.id("identifierId")).sendKeys(email);
 			WebElement but=driver.findElements(By.tagName("button")).get(3);
 			but.click();
 

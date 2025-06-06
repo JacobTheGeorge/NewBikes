@@ -2,16 +2,16 @@
 <testng-results ignored="0" total="1" passed="1" failed="0" skipped="0">
   <reporter-output>
   </reporter-output>
-  <suite started-at="2025-06-06T12:21:02 IST" name="Default suite" finished-at="2025-06-06T12:22:17 IST" duration-ms="75687">
+  <suite started-at="2025-06-06T17:01:38 IST" name="Default suite" finished-at="2025-06-06T17:03:25 IST" duration-ms="106541">
     <groups>
     </groups>
-    <test started-at="2025-06-06T12:21:02 IST" name="Default test" finished-at="2025-06-06T12:22:17 IST" duration-ms="75687">
-      <class name="newbike.Bike">
-        <test-method signature="chrome()[pri:0, instance:newbike.Bike@3c419631]" started-at="2025-06-06T12:21:02 IST" name="chrome" finished-at="2025-06-06T12:22:17 IST" duration-ms="75660" status="PASS">
+    <test started-at="2025-06-06T17:01:38 IST" name="Default test" finished-at="2025-06-06T17:03:25 IST" duration-ms="106541">
+      <class name="newbike.dummy">
+        <test-method signature="chrome()[pri:0, instance:newbike.dummy@3c419631]" started-at="2025-06-06T17:01:38 IST" name="chrome" finished-at="2025-06-06T17:03:25 IST" duration-ms="106515" status="PASS">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- chrome -->
-      </class> <!-- newbike.Bike -->
+      </class> <!-- newbike.dummy -->
     </test> <!-- Default test -->
   </suite> <!-- Default suite -->
 </testng-results>
